@@ -5,14 +5,14 @@
 
 #images=$1
 
-if [ -z "$images" ]
+if [[ -z "${images}" ]]
 then
   echo "[INFO] No images override ... continue"
 else
   while IFS="=" read -r service image; do
-    echo "kustomize edit set image $service=$image"
+    echo "kustomize edit set image ${service}=${image}"
   done < <(
-      echo "$images" | xargs | tr ' ' '\n'
+      echo "${images}" | xargs | tr ' ' '\n'
     )
 fi
 
